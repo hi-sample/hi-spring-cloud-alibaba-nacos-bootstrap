@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public/" }
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'net.hifor.demo'
+version = '0.0.1-SNAPSHOT'
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    maven { url "https://maven.aliyun.com/repository/public/" }
+    mavenCentral()
+}
+
+ext {
+    set('springCloudAlibabaVersion', "2021.0.6.1")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.8'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+    useJUnitPlatform()
+}

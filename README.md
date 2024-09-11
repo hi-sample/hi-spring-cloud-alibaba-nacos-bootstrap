@@ -1,2 +1,1 @@
-# hi-spring-cloud-alibaba-nacos-bootstrap
-
+# spring cloud alibaba nacos sample

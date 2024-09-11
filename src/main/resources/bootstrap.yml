@@ -1,0 +1,46 @@
+var:
+  nacos:
+    addr: test.nacos.hifor.net:8848
+    username: nacos-sample
+    password: "Ry*UuP6#k$VE^BLr"
+    namespace: de16af61-c5b9-41ec-b594-6c7e88bb57ca
+    group: sample-group
+
+server:
+    #default port 8080
+    port: 8989
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: hi-springcloud
+  cloud:
+# 配置无效
+#    config:
+#      # 是否一切以本地配置为准，默认false
+#      override-none: true
+#      # 是否允许本地配置覆盖远程配置
+#      allow-override: false
+#      # 是否覆盖系统属性源，默认为true
+#      override-system-properties: false
+    nacos:
+      config:
+        server-addr: ${var.nacos.addr}
+        context-path: /nacos
+        username: ${var.nacos.username}
+        password: ${var.nacos.password}
+        namespace: ${var.nacos.namespace}
+        file-extension: yml
+        group: ${var.nacos.group}
+        extension-configs:
+          # 默认会去加载基础配置
+          # ${spring.application.name} & group[DEFAULT_GROUP]                                            dataId=hi-springcloud, group=sample-group
+          # ${spring.application.name}.${file-extension:properties} & group[DEFAULT_GROUP]               dataId=hi-springcloud.yml, group=sample-group
+          # ${spring.application.name}-${profile}.${file-extension:properties} & group[DEFAULT_GROUP]    dataId=hi-springcloud-dev.yml, group=sample-group
+          - data-id: test-common.yml
+            group: ${var.nacos.group}
+            refresh: true
+          - data-id: test.yml
+            group: ${var.nacos.group}
+            refresh: true

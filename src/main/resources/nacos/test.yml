@@ -1,0 +1,10 @@
+test: ${JAVA_HOME}
+abc: hahaha
+
+ref-back: ${var2.a.b}
+
+var-test: 壹贰叁
+
+var1.test: var1
+
+ref-application: ${var.nacos.addr}

@@ -1,0 +1,16 @@
+computername: 1111
+username: 啦啦啦111
+ref-pre: ${var1.test}
+
+test-common: 你好好
+
+var2:
+  test: var2
+var2.a: var2
+
+
+
+# 配置报错会导致nacos输出所有配置内容
+#  - var2.a: lalala
+
+var2.a.b: 33333哈2222哈哈信息学1
