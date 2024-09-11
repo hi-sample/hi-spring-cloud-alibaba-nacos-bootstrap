@@ -1,6 +1,6 @@
 var:
   nacos:
-    addr: test.nacos.hifor.net:8848
+    addr: test.nacos-in.hifor.net:8848
     username: nacos-sample
     password: "Ry*UuP6#k$VE^BLr"
     namespace: de16af61-c5b9-41ec-b594-6c7e88bb57ca
