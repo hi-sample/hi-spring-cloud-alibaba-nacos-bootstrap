@@ -25,6 +25,9 @@ repositories {
 }
 
 ext {
+    // https://spring.io/projects/spring-cloud
+    set('springCloudVersion', "2021.0.9")
+    // https://github.com/alibaba/spring-cloud-alibaba
     set('springCloudAlibabaVersion', "2021.0.6.1")
 }
 
@@ -37,7 +40,12 @@ dependencyManagement {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
+
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.8'
+    // CVE-2023-33201
+    // spring-cloud-starter-bootstrap:3.1.8 默认依赖有漏洞：https://avd.aliyun.com/detail?id=AVD-2023-33201
+    // org.bouncycastle:bcpkix-jdk18on:1.73
+    implementation 'org.bouncycastle:bcpkix-jdk18on:1.78.1'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
